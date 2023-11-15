@@ -1,0 +1,26 @@
+.header{
+    height: 95px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(247, 237, 237);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(228, 228, 228);
+    z-index: 100;
+}
+
+.welcome{
+    color: rgb(87, 84, 84);
+    font-size: 35px;
+    font-family: "Paytone One";
+    padding-left: 20px;
+}
+
+.right-section{
+    
+}
