@@ -1,0 +1,65 @@
+@import url("https://db.onlinewebfonts.com/c/365834cfa7beb7ca64c00476397ddc32?family=Helvetica+Neue+Medium+Extended");
+
+*{
+    font-family: 'Helvetica Nueue Medium Extended';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root{
+    --body-color: orange;
+    --sidebar-color: #4b3984;
+    --primary-color: blue;
+    --primary-color-light: purple;
+    --text-color: black;
+
+
+    --tran-03: ;
+    --tran-03: ;
+    --tran-04: ;
+    --tran-05: ;
+}
+
+.websitename{
+    color: #e38377;
+    font-family: 'Paytone One';
+    margin-left: 70px;
+    margin-top: 30px;
+    width: 1px;
+    font-size: 38px;
+}
+
+.name{
+    color: #828282;
+    margin-left: 85px;
+    margin-top: 20px;
+    font-family: 'Helvetica Nueue Medium Extended'
+    
+}
+
+.username{
+    color: #828282;
+    margin-top: 8px;
+    margin-left: 70px;
+    font-family: 'Helvetica Nueue Medium Extended'
+}
+
+.acc-pic{
+    border-radius: 60px;
+    margin-left: 80px;
+    margin-top: 40px;
+    width: 80px;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background: var(--sidebar-color);
+}
+
+
