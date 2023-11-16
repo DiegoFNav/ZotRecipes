@@ -1,12 +1,33 @@
 import './App.css'
 import Sidebar from './components/Sidebar'
+import { useRoutes } from 'react-router-dom'
+import Stack from './components/Stack.jsx'
+import MainPage from './components/MainPage.jsx'
 
 function App() {
 
+  const routes = useRoutes([
+    {
+      path:  "/",
+      element: <MainPage />
+    },
+    {
+      path:  "/recipe-stack",
+      element: <Stack />
+    },
+    {
+      path:  "*",
+      element: <div><h3>Error Occured, please try again</h3></div>
+    },
+  ])
+
+
   return (
-    <>
-     <Sidebar />
-    </>
+    <div className='App'>
+      <Sidebar/>
+      {routes}
+
+    </div>
   )
 }
 
