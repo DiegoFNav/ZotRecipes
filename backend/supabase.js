@@ -1,4 +1,4 @@
-import { supabase } from '../client.js'
+import { supabase } from './client.js'
 
 const spoonacularApiKey = '9c4a7ac652404239b01cc2749aeafd5f'
 
@@ -41,20 +41,20 @@ const saveRecipe = (data) => {
 saveRecipe(getRandomRecipe())
 
 
-const ReturnRecipe = async () => {
-  const recipeData = await getRandomRecipe();
-  console.log(recipeData)
+// const ReturnRecipe = async () => {
+//   const recipeData = await getRandomRecipe();
+//   console.log(recipeData)
 
-  const savedData = () => {
-    saveRecipe(recipeData);
-  }
+//   const savedData = () => {
+//     saveRecipe(recipeData);
+//   }
 
-  return (
-    <>
-    <p>{recipeData && savedData()}</p>
-    </>
-  )
-}
+//   return (
+//     <>
+//     <p>{recipeData && savedData()}</p>
+//     </>
+//   )
+// }
 
 export default ReturnRecipe
 
