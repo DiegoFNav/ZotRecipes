@@ -38,8 +38,23 @@ const saveRecipe = (data) => {
   let ingredientIds = [];
   data.extendedIngredients.map((ingredient) => {
     ingredientIds.push(ingredient.id)
+    // TODO: Ingredient's table 
+    /* 
+    Add and run a function that puts each ingredient into ingredient's table
+    Name of Table: ingredients
+    Copy the following attributes
+    id
+    name
+    */
   })
 
+  // TODO: Instructions table
+  /* 
+  Name of Table: instructions
+  Copy id --> recipe_id
+  Parse Instructions as a list of strings
+  Instructions has elements in it list <li>, <p>
+  */
 
   const saveToRecipe = async () => {
     const { data, error } = await supabase
