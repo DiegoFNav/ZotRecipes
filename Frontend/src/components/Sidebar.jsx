@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
@@ -20,32 +20,33 @@ const Sidebar = () => {
                 <img class="acc-pic" src="icons/profilepics.jpeg" alt="accpic"></img>
                 <p class="name"> john doe</p>
                 <p class="username">@ilovegenshin</p>
+
             </div>
 
-            <div class="appsections">
-                <div class="accountcont">
+            <div className="appsections">
+                <div className="accountcont">
                     <img src="icons/profileacc.png"></img>
-                    <p class="account">Account</p>
+                    <p className="account">Account</p>
                 </div>
 
-                <div class="explorecont">
-                    <img class="search"src="icons/home.png"></img>
-                    <p class="explore">Explore</p>
+                <div className="explorecont">
+                    <img className="search"src="icons/home.png"></img>
+                    <p className="explore">Explore</p>
                 </div>
 
-                <div class="favoritescont">
+                <div className="favoritescont">
                     <img src="icons/profileacc.png"></img>
-                    <p class="favorites">Favorites</p>
+                    <p className="favorites">Favorites</p>
                 </div>
 
-                <div class="chatcont">
+                <div className="chatcont">
                     <img src="icons/profileacc.png"></img>
-                    <p class="chat">Chat</p>
+                    <p className="chat">Chat</p>
                 </div>
 
-                <div class="settingscont">
+                <div className="settingscont">
                     <img src="icons/profileacc.png"></img>
-                    <p class="settings">Settings</p>
+                    <p className="settings">Settings</p>
                 </div>
 
             </div>

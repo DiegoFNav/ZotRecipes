@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Sidebar from './components/Sidebar'
 import { useRoutes } from 'react-router-dom'
@@ -8,6 +5,7 @@ import Stack from './components/Stack.jsx'
 import MainPage from './components/MainPage.jsx'
 
 function App() {
+
   const routes = useRoutes([
     {
       path:  "/",
@@ -22,6 +20,7 @@ function App() {
       element: <div><h3>Error Occured, please try again</h3></div>
     },
   ])
+
 
   return (
     <div className='App'>
