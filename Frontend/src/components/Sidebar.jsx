@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom'
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
-  const [selectedSection, setSelectedSection] = useState('account');
+  const [selectedSection, setSelectedSection] = useState(null);
 
   const handleSectionClick = (section) => {
     setSelectedSection(section);
-    // You can add logic here to handle the click event for each section if needed
   };
 
   return (
@@ -22,68 +21,53 @@ const Sidebar = () => {
       </div>
 
       <div className="appsections">
-        <div className={`accountcont ${selectedSection === 'account' ? 'active' : ''}`} onClick={() => handleSectionClick('account')}>
+        <Link
+          to="/account"
+          className={`accountcont ${selectedSection === 'account' ? 'active' : ''}`}
+          onClick={() => handleSectionClick('account')}
+        >
           <img className="accpic" src="icons/profileacc.png" alt="account" />
           <p className="account">Account</p>
-        </div>
+        </Link>
 
-                <div class="explorecont">
-                    <img class="search"src="icons/home.png"></img>
-                    <p class="explore">Explore</p>
-                </div>
-
-                <div class="favoritescont">
-                    <img src="icons/profileacc.png"></img>
-                    <p class="favorites">Favorites</p>
-                </div>
-
-                <div class="chatcont">
-                    <img src="icons/profileacc.png"></img>
-                    <p class="chat">Chat</p>
-                </div>
-
-                <div class="settingscont">
-                    <img src="icons/profileacc.png"></img>
-                    <p class="settings">Settings</p>
-                </div>
-
-
-
-            </div>
-            
-        
-        </nav> 
-  )
-}
-
-      <div className="appsections">
-        <div className={`accountcont ${selectedSection === 'account' ? 'active' : ''}`} onClick={() => handleSectionClick('account')}>
-          <img className="accpic" src="icons/profileacc.png" alt="account" />
-          <p className="account">Account</p>
-        </div>
-
-        <div className={`explorecont ${selectedSection === 'explore' ? 'active' : ''}`} onClick={() => handleSectionClick('explore')}>
+        <Link
+          to="/recipe-stack"
+          className={`explorecont ${selectedSection === 'explore' ? 'active' : ''}`}
+          onClick={() => handleSectionClick('explore')}
+        >
           <img className="search" src="icons/home.png" alt="explore" />
           <p className="explore">Explore</p>
-        </div>
+        </Link>
 
-        <div className={`favoritescont ${selectedSection === 'favorites' ? 'active' : ''}`} onClick={() => handleSectionClick('favorites')}>
+        <Link
+          to="/favorites"
+          className={`favoritescont ${selectedSection === 'favorites' ? 'active' : ''}`}
+          onClick={() => handleSectionClick('favorites')}
+        >
           <img className="heart" src="icons/heart.png" alt="favorites" />
           <p className="favorites">Favorites</p>
-        </div>
+        </Link>
 
-        <div className={`chatcont ${selectedSection === 'chat' ? 'active' : ''}`} onClick={() => handleSectionClick('chat')}>
+        <Link
+          to="/chat"
+          className={`chatcont ${selectedSection === 'chat' ? 'active' : ''}`}
+          onClick={() => handleSectionClick('chat')}
+        >
           <img className="msgpic" src="icons/msg.png" alt="chat" />
           <p className="chat">Chat</p>
-        </div>
+        </Link>
 
-        <div className={`settingscont ${selectedSection === 'settings' ? 'active' : ''}`} onClick={() => handleSectionClick('settings')}>
+        <Link
+          to="/settings"
+          className={`settingscont ${selectedSection === 'settings' ? 'active' : ''}`}
+          onClick={() => handleSectionClick('settings')}
+        >
           <img className="settingpic" src="icons/setting.png" alt="settings" />
           <p className="settings">Settings</p>
-        </div>
+        </Link>
+
       </div>
     </nav>
-
   );
 };
 

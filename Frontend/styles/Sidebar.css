@@ -177,7 +177,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-left: 12px;
+    margin-left: 15px;
 }
 
 .settingscont{
@@ -210,4 +210,50 @@
     margin-left: -20px;
 }
 
+.appsections a {
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.3s ease;
+}
+
+.appsections a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+.appsections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.appsections a {
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.15s ease-in 0 ease-out;
+    width: 100%;
+    box-sizing: border-box;
+    opacity: 1; /* Set initial opacity to 1 */
+}
+
+.appsections a:hover {
+    background-color: rgba(47, 47, 47, 0.1);
+}
+
+
+/* Update button containers to have consistent styling */
+.accountcont,
+.explorecont,
+.favoritescont,
+.chatcont,
+.settingscont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px; /* Adjust the padding as needed */
+
+}
 
