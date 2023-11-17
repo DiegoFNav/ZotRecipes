@@ -1,57 +1,57 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import React from 'react'
 
 const Sidebar = () => {
   return (
-        <nav className="sidebar">
-            <div>
-            <div className="namecont">
-                <h1 className="flavrr">flavrr</h1>
+        <nav class="sidebar">
+            <div class="namecont">
+                <h1 class="flavrr">flavrr</h1>
             </div>
-                <div className="image-text">
-                    {/* <span class="image">
-                        <img class="acc-pic" src="icons/profilepics.jpeg" alt="accpic"></img>
-                        <p class="name">john doe</p>
-                        <p class="username">@ilovegenshin</p>
-                    </span> */}
-                </div>
-
-            <div className="userinfo">
-                <img className="acc-pic" src="icons/profilepics.jpeg" alt="accpic"></img>
-                <p className="name"> john doe</p>
-                <p className="username">@ilovegenshin</p>
+            
+            <div class="userinfo">
+                <img class="acc-pic" src="icons/profilepics.jpeg" alt="accpic"></img>
+                <p class="name"> john doe</p>
+                <p class="username">@ilovegenshin</p>
             </div>
 
-            <div className="appsections">
-                <div className="accountcont">
-                    <img src="icons/profileacc.png"></img>
-                    <p className="account">Account</p>
+{/* Make sections for entire sidebar */}
+
+            <div class="appsections">
+
+                {/* Make sections for account container */}
+                <div class="accountcont">
+                    <img class="accpic" src="icons/profileacc.png"></img>
+                    <p class="account">Account</p>
                 </div>
 
-                <div className="explorecont">
-                    <img className="search"src="icons/home.png"></img>
-                    <p className="explore">Explore</p>
+                {/* Make sections for explore container */}
+                <div class="explorecont">
+                    <img class="search"src="icons/home.png"></img>
+                        <p class="explore">Explore</p>
                 </div>
 
-                <div className="favoritescont">
-                    <img src="icons/profileacc.png"></img>
-                    <p className="favorites">Favorites</p>
+                {/* Make sections for favorite container */}
+                <div class="favoritescont">
+                    <img class="heart" src="icons/heart.png"></img>
+                    <p class="favorites">Favorites</p>
                 </div>
 
-                <div className="chatcont">
-                    <img src="icons/profileacc.png"></img>
-                    <p className="chat">Chat</p>
+                {/* Make sections for chat container */}
+                <div class="chatcont">
+                    <img class="msgpic" src="icons/msg.png"></img>
+                    <p class="chat">Chat</p>
                 </div>
-
-                <div className="settingscont">
-                    <img src="icons/profileacc.png"></img>
-                    <p className="settings">Settings</p>
+                
+                {/* Make sections for settings container */}
+                <div class="settingscont">
+                    <img class="settingpic" src="icons/setting.png"></img>
+                    <p class="settings">Settings</p>
                 </div>
-
+                <Link to={"/recipe-stack"}>RECIPES</Link>
             </div>
-            </div>
-            <Link to="/">Home</Link>
-            <Link to="/recipe-stack">Recipes</Link>
+            
+        
         </nav> 
   )
 }
