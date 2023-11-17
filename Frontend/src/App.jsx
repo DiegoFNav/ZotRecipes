@@ -3,7 +3,7 @@ import Sidebar from './components/Sidebar'
 import { useRoutes } from 'react-router-dom'
 import Stack from './components/Stack.jsx'
 import MainPage from './components/MainPage.jsx'
-import ReturnRecipe from '../../backend/supabase.js'
+import ReturnRecipe from '../../backend/supabase.jsx'
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
       element: <Stack />
     },    
     {
-      path: 'test',
+      path: '/test',
       element: <ReturnRecipe/>
     },
     {
