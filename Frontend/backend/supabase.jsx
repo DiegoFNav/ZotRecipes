@@ -87,14 +87,6 @@ const saveRecipe = (data) => {
     saveIngredients()
   })
 
-  // TODO: Instructions table
-  /* 
-  Name of Table: instructions
-  Copy id --> recipe_id
-  Parse Instructions as a list of strings
-  Instructions has elements in it list <li>, <p>
-  */
-
   const saveInstructions = async (id, instructions) => {
     const listOfInstructions = stripHtmlTags(instructions)
     const step_number = listOfInstructions.length
@@ -139,7 +131,7 @@ const saveRecipe = (data) => {
 
 
 const ReturnRecipe = () => {
-  ```const [recipeData, setRecipeData] = useState('')
+  /*const [recipeData, setRecipeData] = useState('')
   console.log('does this work')
   //uncomment if you want to see data in console
   useEffect( () => {
@@ -157,7 +149,7 @@ const ReturnRecipe = () => {
     console.log("recipe data is : ", recipeData)
     saveRecipe(recipeData);
 
-  }, [recipeData])```
+  }, [recipeData])*/
   return (
     <>
       <p>sup</p>

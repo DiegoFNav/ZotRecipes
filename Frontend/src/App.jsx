@@ -4,6 +4,7 @@ import { useRoutes } from 'react-router-dom'
 import Stack from './components/Stack.jsx'
 import MainPage from './components/MainPage.jsx'
 import ReturnRecipe from '../backend/supabase.jsx'
+import RecipeObject from '../backend/getData.jsx'
 
 function App() {
 
@@ -17,8 +18,12 @@ function App() {
       element: <Stack />
     },    
     {
-      path: '/test',
+      path: '/testSavingRecipe',
       element: <ReturnRecipe/>
+    },
+    {
+      path: '/testGetRecipe',
+      element: <RecipeObject recipe_id='157375'/>
     },
     {
       path:  "*",
