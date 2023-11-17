@@ -1,26 +1,28 @@
 import React, { useState, useMemo, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
 
+
+
 const db = [
   {
-    name: 'Richard Hendricks',
-    url: './img/richard.jpg'
+    name: 'Eevee',
+    url: 'https://static.wikia.nocookie.net/pyruslords/images/5/56/Charmander.png/revision/latest?cb=20140104014638'
   },
   {
-    name: 'Erlich Bachman',
-    url: './img/erlich.jpg'
+    name: 'Mew',
+    url: 'https://upload.wikimedia.org/wikipedia/en/4/4b/Pok%C3%A9mon_Mew_art.png'
   },
   {
-    name: 'Monica Hall',
-    url: './img/monica.jpg'
+    name: 'Moltres',
+    url: 'https://images.immediate.co.uk/production/volatile/sites/3/2022/09/pokemon-moltres-7f18b6d.jpg?quality=90&resize=980,654'
   },
   {
-    name: 'Jared Dunn',
-    url: './img/jared.jpg'
+    name: 'Bulbasaur',
+    url: 'https://media.cnn.com/api/v1/images/stellar/prod/210226040722-01-pokemon-anniversary-design.jpg?q=w_1920,h_1080,x_0,y_0,c_fill'
   },
   {
-    name: 'Dinesh Chugtai',
-    url: './img/dinesh.jpg'
+    name: 'Pikachu',
+    url: 'https://i.pinimg.com/550x/cb/33/49/cb3349b86ca661ca61ae9a36d88d70d4.jpg'
   }
 ]
 
@@ -86,7 +88,7 @@ function Stack () {
         href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
         rel='stylesheet'
       />
-      <h1>React Tinder Card</h1>
+      <h1>Available Recipes</h1>
       <div className='cardContainer'>
         {db.map((character, index) => (
           <TinderCard
@@ -101,7 +103,7 @@ function Stack () {
               style={{ backgroundImage: 'url(' + character.url + ')' }}
               className='card'
             >
-              <h3>{character.name}</h3>
+              <h3 id='name'>{character.name}</h3>
             </div>
           </TinderCard>
         ))}

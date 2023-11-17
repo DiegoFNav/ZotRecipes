@@ -35,45 +35,6 @@ const Sidebar = () => {
           className={`explorecont ${selectedSection === 'explore' ? 'active' : ''}`}
           onClick={() => handleSectionClick('explore')}
         >
-
-                {/* Make sections for explore container */}
-                <div class="explorecont">
-                    <img class="search"src="icons/home.png"></img>
-                        <p class="explore">Explore</p>
-                </div>
-
-                {/* Make sections for favorite container */}
-                <div class="favoritescont">
-                    <img class="heart" src="icons/heart.png"></img>
-                    <p class="favorites">Favorites</p>
-                </div>
-
-                {/* Make sections for chat container */}
-                <div class="chatcont">
-                    <img class="msgpic" src="icons/msg.png"></img>
-                    <p class="chat">Chat</p>
-                </div>
-                
-                {/* Make sections for settings container */}
-                <div class="settingscont">
-                    <img class="settingpic" src="icons/setting.png"></img>
-                    <p class="settings">Settings</p>
-                </div>
-                <Link to={"/recipe-stack"}>RECIPES</Link>
-            </div>
-            
-        
-        </nav> 
-      );
-    };
-
-      <div className="appsections">
-        <div className={`accountcont ${selectedSection === 'account' ? 'active' : ''}`} onClick={() => handleSectionClick('account')}>
-          <img className="accpic" src="icons/profileacc.png" alt="account" />
-          <p className="account">Account</p>
-        </div>
-
-        <div className={`explorecont ${selectedSection === 'explore' ? 'active' : ''}`} onClick={() => handleSectionClick('explore')}>
           <img className="search" src="icons/home.png" alt="explore" />
           <p className="explore">Explore</p>
         </Link>
@@ -104,7 +65,6 @@ const Sidebar = () => {
           <img className="settingpic" src="icons/setting.png" alt="settings" />
           <p className="settings">Settings</p>
         </Link>
-
       </div>
     </nav>
   );
