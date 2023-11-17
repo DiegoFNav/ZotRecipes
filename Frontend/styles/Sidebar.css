@@ -1,3 +1,5 @@
+/* CSS Styling */
+
 @import url("https://db.onlinewebfonts.com/c/365834cfa7beb7ca64c00476397ddc32?family=Helvetica+Neue+Medium+Extended");
 @font-face {
     font-family: "Helvetica Neue Medium Extended";
@@ -26,12 +28,6 @@
     --primary-color: blue;
     --primary-color-light: purple;
     --text-color: purple;
-
-
-    --tran-03: ;
-    --tran-03: ;
-    --tran-04: ;
-    --tran-05: ;
 }
 
 .accountinfocont{
@@ -57,14 +53,12 @@
     color: #e38377;
     font-family: "Paytone One";
     padding-left: 74px;
-    
 }
 
 .name{
     color: #828282;
     margin-top: 20px;
     font-family: "Helvetica Neue Medium Extended";
-    
 }
 
 .username{
@@ -94,7 +88,6 @@
     flex-direction: row;
     margin-top: 40px;
     justify-content: center;
-    
 }
 
 .account{
@@ -202,7 +195,6 @@
     margin-left: 12px;
 }
 
-
 .appsections {
     display: flex;
     flex-direction: column;
@@ -223,7 +215,6 @@
     background-color: rgba(47, 47, 47, 0.1);
 }
 
-
 /* Update button containers to have consistent styling */
 .accountcont,
 .explorecont,
@@ -236,11 +227,36 @@
     justify-content: center;
     padding-top: 20px;
     padding-bottom: 20px; /* Adjust the padding as needed */
-
 }
 
-.appsections a.active {
-    background-color: rgba(0, 0, 0, 0.2);
+.wrapper {
+    position: relative;
+    overflow-x: hidden;
 }
 
+.arrow {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+    background: white;
+    transition: left 0.4s cubic-bezier(0, .52, 0, 1);
+    color: black;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
 
+.arrow-active {
+    left: 250px; /* Adjust the position based on the width of your sidebar */
+    border-radius: 50px;
+    margin-right: 100px;
+    background: #fbe
+
+}

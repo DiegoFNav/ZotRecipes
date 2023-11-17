@@ -2,111 +2,81 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
+  const [sidebarVisible, setSidebarVisible] = useState(false);
   const [selectedSection, setSelectedSection] = useState(null);
 
   const handleSectionClick = (section) => {
     setSelectedSection(section);
   };
 
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
+  };
+
   return (
-    <nav className="sidebar">
-      <div className="namecont">
-        <h1 className="flavrr">flavrr</h1>
+    <div className={`wrapper ${sidebarVisible ? 'sidebar-visible' : ''}`}>
+      <div className={`arrow ${sidebarVisible ? 'arrow-active' : ''}`} onClick={toggleSidebar}>
+        {sidebarVisible ? '❮' : '❯'} {/* Change arrow direction based on visibility */}
       </div>
-
-      <div className="userinfo">
-        <img className="acc-pic" src="icons/profilepics.jpeg" alt="accpic" />
-        <p className="name">john doe</p>
-        <p className="username">@ilovegenshin</p>
-      </div>
-
-      <div className="appsections">
-        <Link
-          to="/account"
-          className={`accountcont ${selectedSection === 'account' ? 'active' : ''}`}
-          onClick={() => handleSectionClick('account')}
-        >
-          <img className="accpic" src="icons/profileacc.png" alt="account" />
-          <p className="account">Account</p>
-        </Link>
-
-        <Link
-          to="/recipe-stack"
-          className={`explorecont ${selectedSection === 'explore' ? 'active' : ''}`}
-          onClick={() => handleSectionClick('explore')}
-        >
-
-                {/* Make sections for explore container */}
-                <div class="explorecont">
-                    <img class="search"src="icons/home.png"></img>
-                        <p class="explore">Explore</p>
-                </div>
-
-                {/* Make sections for favorite container */}
-                <div class="favoritescont">
-                    <img class="heart" src="icons/heart.png"></img>
-                    <p class="favorites">Favorites</p>
-                </div>
-
-                {/* Make sections for chat container */}
-                <div class="chatcont">
-                    <img class="msgpic" src="icons/msg.png"></img>
-                    <p class="chat">Chat</p>
-                </div>
-                
-                {/* Make sections for settings container */}
-                <div class="settingscont">
-                    <img class="settingpic" src="icons/setting.png"></img>
-                    <p class="settings">Settings</p>
-                </div>
-                <Link to={"/recipe-stack"}>RECIPES</Link>
-            </div>
-            
-        
-        </nav> 
-      );
-    };
-
-      <div className="appsections">
-        <div className={`accountcont ${selectedSection === 'account' ? 'active' : ''}`} onClick={() => handleSectionClick('account')}>
-          <img className="accpic" src="icons/profileacc.png" alt="account" />
-          <p className="account">Account</p>
+      <nav className={`sidebar ${sidebarVisible ? 'active' : ''}`}>
+        <div className="namecont">
+          <h1 className="flavrr">flavrr</h1>
         </div>
 
-        <div className={`explorecont ${selectedSection === 'explore' ? 'active' : ''}`} onClick={() => handleSectionClick('explore')}>
-          <img className="search" src="icons/home.png" alt="explore" />
-          <p className="explore">Explore</p>
-        </Link>
+        <div className="userinfo">
+          <img className="acc-pic" src="icons/profilepics.jpeg" alt="accpic" />
+          <p className="name">john doe</p>
+          <p className="username">@ilovegenshin</p>
+        </div>
 
-        <Link
-          to="/favorites"
-          className={`favoritescont ${selectedSection === 'favorites' ? 'active' : ''}`}
-          onClick={() => handleSectionClick('favorites')}
-        >
-          <img className="heart" src="icons/heart.png" alt="favorites" />
-          <p className="favorites">Favorites</p>
-        </Link>
+        <div className={`appsections ${sidebarVisible ? '' : 'sidebar-minimized'}`}>
+          <Link
+            to="/account"
+            className={`accountcont ${selectedSection === 'account' ? 'active' : ''}`}
+            onClick={() => handleSectionClick('account')}
+          >
+            <img className="accpic" src="icons/profileacc.png" alt="account" />
+            {sidebarVisible && <p className="account">Account</p>}
+          </Link>
 
-        <Link
-          to="/chat"
-          className={`chatcont ${selectedSection === 'chat' ? 'active' : ''}`}
-          onClick={() => handleSectionClick('chat')}
-        >
-          <img className="msgpic" src="icons/msg.png" alt="chat" />
-          <p className="chat">Chat</p>
-        </Link>
+          <Link
+            to="/recipe-stack"
+            className={`explorecont ${selectedSection === 'explore' ? 'active' : ''}`}
+            onClick={() => handleSectionClick('explore')}
+          >
+            <img className="search" src="icons/home.png" alt="explore" />
+            {sidebarVisible && <p className="explore">Explore</p>}
+          </Link>
 
-        <Link
-          to="/settings"
-          className={`settingscont ${selectedSection === 'settings' ? 'active' : ''}`}
-          onClick={() => handleSectionClick('settings')}
-        >
-          <img className="settingpic" src="icons/setting.png" alt="settings" />
-          <p className="settings">Settings</p>
-        </Link>
+          <Link
+            to="/favorites"
+            className={`favoritescont ${selectedSection === 'favorites' ? 'active' : ''}`}
+            onClick={() => handleSectionClick('favorites')}
+          >
+            <img className="heart" src="icons/heart.png" alt="favorites" />
+            {sidebarVisible && <p className="favorites">Favorites</p>}
+          </Link>
 
-      </div>
-    </nav>
+          <Link
+            to="/chat"
+            className={`chatcont ${selectedSection === 'chat' ? 'active' : ''}`}
+            onClick={() => handleSectionClick('chat')}
+          >
+            <img className="msgpic" src="icons/msg.png" alt="chat" />
+            {sidebarVisible && <p className="chat">Chat</p>}
+          </Link>
+
+          <Link
+            to="/settings"
+            className={`settingscont ${selectedSection === 'settings' ? 'active' : ''}`}
+            onClick={() => handleSectionClick('settings')}
+          >
+            <img className="settingpic" src="icons/setting.png" alt="settings" />
+            {sidebarVisible && <p className="settings">Settings</p>}
+          </Link>
+        </div>
+      </nav>
+    </div>
   );
 };
 
