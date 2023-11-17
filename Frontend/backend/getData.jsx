@@ -39,13 +39,23 @@ const RecipeObject = (props) => {
     }
   }
 
+  const getIngredientData = async (id) => {
+    let { data, error } = await supabase
+    .from('ingredients')
+    .select('*')
+    .eq('id', recipe_id)
+  }
+
   useEffect( () => {
     getRecipeData()
   }, [])
 
   useEffect( () => {
-    
-  })
+    if (recipeData === null) {
+      return
+    }
+
+  }, [recipeData])
 
 
 
