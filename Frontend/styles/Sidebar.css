@@ -202,24 +202,6 @@
     margin-left: 12px;
 }
 
-.appsections{
-    display: flex;
-    justify-content: center;
-    padding-bottom: 5px;
-    flex-direction: column;
-    margin-left: -20px;
-}
-
-.appsections a {
-    text-decoration: none;
-    color: inherit;
-    transition: background-color 0.3s ease;
-}
-
-.appsections a:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
 
 .appsections {
     display: flex;
@@ -256,4 +238,9 @@
     padding-bottom: 20px; /* Adjust the padding as needed */
 
 }
+
+.appsections a.active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 

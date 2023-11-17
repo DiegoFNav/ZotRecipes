@@ -1,51 +1,127 @@
-import React from 'react'
+import React, { useState, useMemo, useRef } from 'react'
+import TinderCard from 'react-tinder-card'
 
-const Stack = () => {
-// To move the card as the user drags the cursor
-    const motionValue = useMotionValue(0);
- 
-    // To rotate the card as the card moves on drag
-    const rotateValue = useTransform(motionValue, [-200, 200], [-50, 50]);
- 
-    // To decrease opacity of the card when swiped
-    // on dragging card to left(-200) or right(200)
-    // opacity gradually changes to 0
-    // and when the card is in center opacity = 1
-    const opacityValue = useTransform(
-        motionValue,
-        [-200, -150, 0, 150, 200],
-        [0, 1, 1, 1, 0]
-    );
- 
-    // Framer animation hook
-    const animControls = useAnimation();
- 
-    return (
-        <div className="Stack">
-            <Frame
-                center
-                // Card can be drag only on x-axis
-                drag="x"
-                x={motionValue}
-                rotate={rotateValue}
-                opacity={opacityValue}
-                dragConstraints={{ left: -1000, right: 1000 }}
-                style={style}
-                onDragEnd={(event, info) => {
-                    // If the card is dragged only upto 150 on x-axis
-                    // bring it back to initial position
-                    if (Math.abs(info.point.x) <= 150) {
-                        animControls.start({ x: 0 });
-                    } else {
-                        // If card is dragged beyond 150
-                        // make it disappear
-                        // making use of ternary operator
-                        animControls.start({ x: info.point.x < 0 ? -200 : 200 });
-                    }
-                }}
-            />
-        </div>
-    );
-};
+const db = [
+  {
+    name: 'Richard Hendricks',
+    url: './img/richard.jpg'
+  },
+  {
+    name: 'Erlich Bachman',
+    url: './img/erlich.jpg'
+  },
+  {
+    name: 'Monica Hall',
+    url: './img/monica.jpg'
+  },
+  {
+    name: 'Jared Dunn',
+    url: './img/jared.jpg'
+  },
+  {
+    name: 'Dinesh Chugtai',
+    url: './img/dinesh.jpg'
+  }
+]
+
+function Stack () {
+  const [currentIndex, setCurrentIndex] = useState(db.length - 1)
+  const [lastDirection, setLastDirection] = useState()
+  // used for outOfFrame closure
+  const currentIndexRef = useRef(currentIndex)
+
+  const childRefs = useMemo(
+    () =>
+      Array(db.length)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  )
+
+  const updateCurrentIndex = (val) => {
+    setCurrentIndex(val)
+    currentIndexRef.current = val
+  }
+
+  const canGoBack = currentIndex < db.length - 1
+
+  const canSwipe = currentIndex >= 0
+
+  // set last direction and decrease current index
+  const swiped = (direction, nameToDelete, index) => {
+    setLastDirection(direction)
+    updateCurrentIndex(index - 1)
+  }
+
+  const outOfFrame = (name, idx) => {
+    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current)
+    // handle the case in which go back is pressed before card goes outOfFrame
+    currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
+    // TODO: when quickly swipe and restore multiple times the same card,
+    // it happens multiple outOfFrame events are queued and the card disappear
+    // during latest swipes. Only the last outOfFrame event should be considered valid
+  }
+
+  const swipe = async (dir) => {
+    if (canSwipe && currentIndex < db.length) {
+      await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
+    }
+  }
+
+  // increase current index and show card
+  const goBack = async () => {
+    if (!canGoBack) return
+    const newIndex = currentIndex + 1
+    updateCurrentIndex(newIndex)
+    await childRefs[newIndex].current.restoreCard()
+  }
+
+  return (
+    <div>
+      <link
+        href='https://fonts.googleapis.com/css?family=Damion&display=swap'
+        rel='stylesheet'
+      />
+      <link
+        href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
+        rel='stylesheet'
+      />
+      <h1>React Tinder Card</h1>
+      <div className='cardContainer'>
+        {db.map((character, index) => (
+          <TinderCard
+            ref={childRefs[index]}
+            className='swipe'
+            key={character.name}
+            onSwipe={(dir) => swiped(dir, character.name, index)}
+            onCardLeftScreen={() => outOfFrame(character.name, index)}
+            preventSwipe={'up', 'down'}
+          >
+            <div
+              style={{ backgroundImage: 'url(' + character.url + ')' }}
+              className='card'
+            >
+              <h3>{character.name}</h3>
+            </div>
+          </TinderCard>
+        ))}
+      </div>
+      <div className='buttons'>
+        <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}>Swipe left!</button>
+        <button style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>Undo swipe!</button>
+        <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>Swipe right!</button>
+      </div>
+      {lastDirection ? (
+        <h2 key={lastDirection} className='infoText'>
+          You swiped {lastDirection}
+        </h2>
+      ) : (
+        <h2 className='infoText'>
+          Swipe a card or press a button to get Restore Card button visible!
+        </h2>
+      )}
+    </div>
+  )
+}
 
 export default Stack
