@@ -1,7 +1,5 @@
-import dotenv from 'dotenv'
-dotenv.config()
 import { supabase } from './client.js'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const spoonacularApiKey = '9c4a7ac652404239b01cc2749aeafd5f'
 
@@ -14,6 +12,13 @@ function stripHtmlTags(html) {
   return stringWithoutTags.split(/\s+/);
 }
 
+function getElementBeforeFirstPeriod(inputString) {
+  const index = inputString.indexOf('.');
+  if (index !== -1) {
+      return inputString.substring(0, index);
+  }
+  return inputString;
+}
 
 
 const getData = (url, apiKey=spoonacularApiKey) => {
@@ -49,18 +54,22 @@ const saveRecipe = (data) => {
     id
     name
     */
+    console.log('ingreident attributes: ', ingredient.name, ingredient.id)
     const saveIngredients = async () => {
       const { data, error } = await supabase
       .from('ingredients')
-      .insert({
-        id: ingredient.id, name: ingredient.name})
+      .insert([
+        { id: ingredient.id, name: ingredient.name }
+      ])
       .select()
-      }
       if (error) {
-        console.log('error when saving ingredeints: ', error)
+        console.log('ingreidents error at: ', error)
       } else {
         console.log('save ingredients: ', data)
       }
+      }
+
+
     saveIngredients()
   })
 
@@ -111,38 +120,34 @@ const saveRecipe = (data) => {
   saveInstructions(id, instructions)
   // saveIngredients when adding ingredients IDs to a list to insert into 'recipe' table
 }
-saveRecipe(getRandomRecipe())
 
 
-const ReturnRecipe = async () => {
-  const [recipeData, setRecipeData] = useState(null)
-
-
+const ReturnRecipe = () => {
+  const [recipeData, setRecipeData] = useState('')
+  console.log('does this work')
   //uncomment if you want to see data in console
   useEffect( () => {
+    console.log('does this work in use effect')
     const fetchData = async () => {
       const data = await getRandomRecipe();
       setRecipeData(data);
     };
-
+    
     if (!recipeData) {
       fetchData()
       return
     }
+    console.log('recipedata', recipeData)
     console.log("recipe data is : ", recipeData)
     saveRecipe(recipeData);
 
   }, [recipeData])
   return (
     <>
-    <p>sup</p>
+      <p>sup</p>
     </>
   )
 }
-
-
-
-
 
 export default ReturnRecipe
 
