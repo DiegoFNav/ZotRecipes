@@ -1,4 +1,4 @@
-/* CSS Styling */
+
 
 @import url("https://db.onlinewebfonts.com/c/365834cfa7beb7ca64c00476397ddc32?family=Helvetica+Neue+Medium+Extended");
 @font-face {
@@ -80,17 +80,22 @@
     height: 100%;
     width: 250px;
     background: var(--sidebar-color);
-    transition: transform .3s cubic-bezier(0, .52, 0, 1);
+    transition: left 0.5s cubic-bezier(0, 0.52, 0, 1);
 }
+
+.sidebar-minimized {
+    width: 125px; /* Set half of the original width */
+  }
+  
 
 .accountcont{
     display: flex;
     flex-direction: row;
-    margin-top: 40px;
+    margin-top: 5px;
     justify-content: center;
 }
 
-.account{
+.hometext{
     color: #828282;
     padding-left: 12px;
     font-family: "Helvetica Neue Medium Extended";;
@@ -98,11 +103,12 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    margin-right: 30px;
 }
 
-.accpic{
-    width: 13%;
-    height: 13%;
+.home{
+    width: 38px;
+    height: 38px;
 }
 
 .explorecont{
@@ -113,8 +119,8 @@
 }
 
 .search{
-    width: 13%;
-    height: 13%;
+    width: 30px;
+    height: 30px;
     margin-left: -7px;
 }
 
@@ -136,8 +142,8 @@
 }
 
 .heart{
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     margin-right: 8px;
 }
 
@@ -147,7 +153,7 @@
     font-size: 14px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .chatcont{
@@ -158,9 +164,9 @@
 }
 
 .msgpic{
-    width: 30px;
-    height: 30px;
-    margin-left: -30px;
+    width: 35px;
+    height: 35px;
+    margin-left: -10px;
 }
 
 .chat{
@@ -169,8 +175,8 @@
     font-size: 14px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    margin-left: 15px;
+    justify-content: left;
+    margin-left: 20px;
 }
 
 .settingscont{
@@ -181,8 +187,9 @@
 }
 
 .settingpic{
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
+    margin-left: -5px;
 }
 
 .settings{
@@ -199,16 +206,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 5px;
+    justify-content: center; /* Center items vertically in the halved sidebar */
+    color: pink;
+}
+
+.additional-class{
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .appsections a {
     text-decoration: none;
     color: inherit;
-    transition: background-color 0.15s ease-in 0 ease-out;
+    transition: 0.15s ease-in 0 ease-out;
     width: 100%;
     box-sizing: border-box;
     opacity: 1; /* Set initial opacity to 1 */
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .appsections a:hover {
@@ -236,14 +254,14 @@
 
 .arrow {
     position: fixed;
-    left: 0;
+    left: 90px;
     top: 50%;
     transform: translateY(-50%);
     padding: 10px;
     cursor: pointer;
     z-index: 2;
-    background: white;
-    transition: left 0.4s cubic-bezier(0, .52, 0, 1);
+    background: #fbe2eb;
+    transition:0.25s cubic-bezier(0, 0.25, 0, 1);
     color: black;
     width: 70px;
     height: 70px;
@@ -254,9 +272,25 @@
 }
 
 .arrow-active {
-    left: 250px; /* Adjust the position based on the width of your sidebar */
+    left: 215px; /* Adjust the position based on the width of your sidebar */
     border-radius: 50px;
     margin-right: 100px;
-    background: #fbe
+    background: #fbe2eb;
 
 }
+
+.flogo-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-bottom: 20px;
+  }
+  
+  .flogo {
+    color: #e38377;
+    font-family: "Helvetica Neue Medium Extended";
+    display: flex;
+    align-items: end;
+    font-size: 45px;
+  }

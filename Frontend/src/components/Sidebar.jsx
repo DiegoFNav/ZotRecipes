@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
+{/*Sidebar Code */}
+
 const Sidebar = () => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const [selectedSection, setSelectedSection] = useState(null);
@@ -13,30 +16,44 @@ const Sidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
 
+  {/*Sidebar Code */}
   return (
     <div className={`wrapper ${sidebarVisible ? 'sidebar-visible' : ''}`}>
       <div className={`arrow ${sidebarVisible ? 'arrow-active' : ''}`} onClick={toggleSidebar}>
         {sidebarVisible ? '❮' : '❯'} {/* Change arrow direction based on visibility */}
       </div>
-      <nav className={`sidebar ${sidebarVisible ? 'active' : ''}`}>
-        <div className="namecont">
-          <h1 className="flavrr">flavrr</h1>
-        </div>
+      <nav className={`sidebar ${sidebarVisible ? 'active' : 'sidebar-minimized'}`}>
+        {sidebarVisible && (
+          <div className="namecont">
+            <h1 className="flavrr">flavrr</h1>
+          </div>
+        )}
+        
 
-        <div className="userinfo">
-          <img className="acc-pic" src="icons/profilepics.jpeg" alt="accpic" />
-          <p className="name">john doe</p>
-          <p className="username">@ilovegenshin</p>
-        </div>
+        {sidebarVisible && (
+          <div className="userinfo">
+            <img className="acc-pic" src="icons/profilepics.jpeg" alt="accpic" />
+            <p className="name">john doe</p>
+            <p className="username">@ilovegenshin</p>
+          </div>
+        )}
 
-        <div className={`appsections ${sidebarVisible ? '' : 'sidebar-minimized'}`}>
+        {!sidebarVisible ? (
+          <div className="flogo-wrapper">
+            <div>
+              <p className="flogo">f.</p>
+            </div>
+          </div>
+        ): null}
+
+        <div className={`appsections ${sidebarVisible ? '' : 'sidebar-minimized additional-class'}`}>
           <Link
-            to="/account"
+            to="/"
             className={`accountcont ${selectedSection === 'account' ? 'active' : ''}`}
             onClick={() => handleSectionClick('account')}
           >
-            <img className="accpic" src="icons/profileacc.png" alt="account" />
-            {sidebarVisible && <p className="account">Account</p>}
+            <img className="home" src="icons/home.png" alt="account" />
+            {sidebarVisible && <p className="hometext">Home</p>}
           </Link>
 
           <Link
@@ -44,7 +61,7 @@ const Sidebar = () => {
             className={`explorecont ${selectedSection === 'explore' ? 'active' : ''}`}
             onClick={() => handleSectionClick('explore')}
           >
-            <img className="search" src="icons/home.png" alt="explore" />
+            <img className="search" src="icons/magnifyingglass.png" alt="explore" />
             {sidebarVisible && <p className="explore">Explore</p>}
           </Link>
 
@@ -77,6 +94,7 @@ const Sidebar = () => {
         </div>
       </nav>
     </div>
+
   );
 };
 
