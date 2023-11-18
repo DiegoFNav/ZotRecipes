@@ -1,5 +1,8 @@
-import React, { useState, useMemo, useRef } from 'react'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
 import TinderCard from 'react-tinder-card'
+import { supabase } from '../../backend/client'
+import { getRandomRecipe, saveRecipe,  } from '../../backend/supabase'
+
 
 
 
@@ -29,6 +32,27 @@ const db = [
 function Stack () {
   const [currentIndex, setCurrentIndex] = useState(db.length - 1)
   const [lastDirection, setLastDirection] = useState()
+
+  const [recipeData, setRecipeData] = useState('')
+  //uncomment if you want to see data in console
+  useEffect( () => {
+    const fetchData = async () => {
+      const data = await getRandomRecipe();
+      setRecipeData(data);
+    };
+    
+    if (!recipeData) {
+      fetchData()
+      return
+    }
+    saveRecipe(recipeData);
+
+  }, [recipeData])
+
+
+
+
+
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex)
 
@@ -65,6 +89,7 @@ function Stack () {
   }
 
   const swipe = async (dir) => {
+    console.log(saveRecipe(getRandomRecipe()))
     if (canSwipe && currentIndex < db.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
     }
@@ -90,6 +115,8 @@ function Stack () {
       />
       <h1>Available Recipes</h1>
       <div className='cardContainer'>
+
+        {recipeData && map}
         {db.map((character, index) => (
           <TinderCard
             ref={childRefs[index]}
@@ -97,7 +124,7 @@ function Stack () {
             key={character.name}
             onSwipe={(dir) => swiped(dir, character.name, index)}
             onCardLeftScreen={() => outOfFrame(character.name, index)}
-            preventSwipe={'up', 'down'}
+            preventSwipe={['up', 'down']}
           >
             <div
               style={{ backgroundImage: 'url(' + character.url + ')'}}

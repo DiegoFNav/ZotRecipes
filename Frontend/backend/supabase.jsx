@@ -52,13 +52,13 @@ const getData = (url, apiKey=spoonacularApiKey) => {
     .catch( error => console.log(error) )
 }
 
-const getRandomRecipe = () => {
+export const getRandomRecipe = () => {
   const randomRecipeURL = 'https://api.spoonacular.com/recipes/random'
   console.log('getData', getData(randomRecipeURL))
   return getData(randomRecipeURL)
 }
 
-const saveRecipe = (data) => {
+export const saveRecipe = (data) => {
   let { id, title, image, glutenFree, cuisines, readyInMinutes, veryHealthy, preparationMinutes, summary, servings, vegan, vegetarian, extendedIngredients, instructions } = data
 
   console.log('data: ', data)
