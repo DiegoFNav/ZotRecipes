@@ -35,8 +35,8 @@ function App() {
 
   return (
     <div className='App'>
-      <Sidebar/>
       {routes}
+      <Sidebar/>
 
     </div>
   )

@@ -6,12 +6,12 @@
 }
 
 * {
-  border: 1px solid black;
+  border: 1px solid rgb(89, 89, 86);
 }
 /* You can adjust this variable based on the actual width of your minimized sidebar */
 :root {
   --sidebar-width: 80px; /* Example: minimized sidebar width */
-  --expanded-sidebar-width: 80px
+  --minimized-sidebar-width: 0px;
 }
 
 .logo {
@@ -52,13 +52,15 @@
 
 
 /* FIXING LEFT MARGIN FOR MAINPAGE  */
-
-
-/* If you have a class that toggles when the sidebar is expanded, you might have something like this */
-.mainPage.with-expanded-sidebar {
-  padding-left: var(--expanded-sidebar-width);
+.App{
+  display:flex;
 }
 
-:root {
-  --expanded-sidebar-width: 250px; /* Example: expanded sidebar width */
+
+.Sidebar{
+  width: var(--sidebar-width);
+}
+
+.Sidebar-minimized{
+  display: none;
 }
