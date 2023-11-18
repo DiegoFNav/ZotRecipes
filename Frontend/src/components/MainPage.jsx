@@ -1,13 +1,9 @@
-<<<<<<< HEAD
+
 import MainPageCard from './MainPageCard.jsx';
 import { supabase } from '../../backend/client.js';
 import { useEffect, useState, useRef } from 'react'
 import './MainPage.css'
-=======
-import React,  { useState } from 'react';
 
-
->>>>>>> 344487dff41ffaa4ded34985c8c859f70a35b9d4
 
 const MainPage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -40,7 +36,6 @@ const MainPage = () => {
 
 
   return (
-<<<<<<< HEAD
     // <div className='mainPage'>
     //     <h1 className='mainPage-header'>HomePage</h1>
     //     {recipes ? (
@@ -64,14 +59,15 @@ const MainPage = () => {
       ) : (
         <h2>Recipes not loading</h2>
       )}
-=======
     <div>
       <input class="searchbar" type="text" placeholder="What would you like to eat?"></input>
->>>>>>> 344487dff41ffaa4ded34985c8c859f70a35b9d4
     </div>
     <div className="scroll-button right" onClick={() => scroll('right')}>&gt;</div>
+    </div>
   </div>
   )
+
+
 }
 
 export default MainPage
