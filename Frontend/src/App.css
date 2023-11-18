@@ -1,8 +1,17 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+* {
+  border: 1px solid black;
+}
+/* You can adjust this variable based on the actual width of your minimized sidebar */
+:root {
+  --sidebar-width: 80px; /* Example: minimized sidebar width */
+  --expanded-sidebar-width: 80px
 }
 
 .logo {
@@ -39,4 +48,17 @@
 
 .read-the-docs {
   color: #888;
+}
+
+
+/* FIXING LEFT MARGIN FOR MAINPAGE  */
+
+
+/* If you have a class that toggles when the sidebar is expanded, you might have something like this */
+.mainPage.with-expanded-sidebar {
+  padding-left: var(--expanded-sidebar-width);
+}
+
+:root {
+  --expanded-sidebar-width: 250px; /* Example: expanded sidebar width */
 }

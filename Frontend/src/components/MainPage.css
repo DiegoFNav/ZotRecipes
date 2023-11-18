@@ -1,0 +1,54 @@
+/* MainPage.css */
+.mainPage {
+    padding: 20px;
+  }
+
+.mainPage {
+/* Make sure that the padding on the left side of mainPage is removed since #root now handles the spacing */
+padding-left: var(--sidebar-width); 
+transition: padding-left 0.3s;
+}
+.mainPage.with-expanded-sidebar {
+    margin-left: var(--expanded-sidebar-width); /* This would push the #root content further to the right */
+  }
+  
+  .mainPage-header {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .cards-container {
+    display: flex;
+    overflow-x: hidden; /* Hide horizontal overflow */
+    scroll-behavior: smooth; /* Smooth scrolling */
+  }
+  
+  .card-wrapper {
+    flex: 0 0 20%; /* Each card will take up 20% of the container's width */
+    box-sizing: border-box; /* Include padding and borders in the element's total width */
+  }
+  
+  .scroll-button {
+    cursor: pointer;
+    user-select: none; /* Prevent text selection on double click */
+  }
+  
+  /* Style for your scroll buttons, add more if needed */
+  .scroll-button.left {
+    position: absolute;
+    left: 10px;
+    z-index: 10;
+  }
+  
+  .scroll-button.right {
+    position: absolute;
+    right: 10px;
+    z-index: 10;
+  }
+  
+
+
+  
+
+  

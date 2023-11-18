@@ -1,0 +1,41 @@
+/* MainPageCard.css */
+
+.card {
+    width: 250px; /* Fixed width or you can use percentages */
+    border-radius: 16px; /* Rounded corners */
+    overflow: hidden; /* Ensures the image does not break out of border-radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin: 16px; /* Space out cards */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for hover effects */
+    background-color: #fff; /* White background */
+    cursor: pointer; /* Indicates the card is clickable */
+  }
+  
+  .card:hover {
+    transform: translateY(-4px); /* Slight lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover for a "lifted" effect */
+  }
+  
+  .card-image {
+    width: 100%; /* Image takes up the full width of the card */
+    height: 150px; /* Fixed height for images */
+    object-fit: cover; /* Ensures images cover the area nicely */
+    display: block; /* Removes bottom space/margin of the image */
+  }
+  
+  .card-title {
+    padding: 8px 16px; /* Padding inside the card for the title */
+    font-size: 1em; /* Title font size */
+    font-weight: bold; /* Make the title bold */
+    color: #333; /* Title text color */
+    text-align: center; /* Center-align the title */
+    margin: 0; /* Remove default margin of headings */
+  }
+  
+  /* Add responsiveness */
+  @media (max-width: 768px) {
+    .card {
+      width: 100%; /* Full width on smaller screens */
+    }
+  }
+  
