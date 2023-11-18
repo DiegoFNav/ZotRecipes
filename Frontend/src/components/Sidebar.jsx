@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
+{/*Sidebar Code */}
+
 const Sidebar = () => {
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [selectedSection, setSelectedSection] = useState(null);
@@ -13,43 +16,54 @@ const Sidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
 
+  {/*Sidebar Code */}
   return (
-    <div className={`Sidebar `}>
-        <div className={`arrow ${sidebarVisible ? 'arrow-active' : ''}`} onClick={toggleSidebar}>
-          {sidebarVisible ? '❮' : '❯'} {/* Change arrow direction based on visibility */}
-        </div>
-
-      <div className={`wrapper ${sidebarVisible ? '' : 'Sidebar-minimized'} ${sidebarVisible ? 'sidebar-visible' : ''}`}>
-
-        <nav className={`sidebar ${sidebarVisible ? 'active' : ''}`}>
+    <div className={`wrapper ${sidebarVisible ? 'sidebar-visible' : ''}`}>
+      <div className={`arrow ${sidebarVisible ? 'arrow-active' : ''}`} onClick={toggleSidebar}>
+        {sidebarVisible ? '❮' : '❯'} {/* Change arrow direction based on visibility */}
+      </div>
+      <nav className={`sidebar ${sidebarVisible ? 'active' : 'sidebar-minimized'}`}>
+        {sidebarVisible && (
           <div className="namecont">
             <h1 className="flavrr">flavrr</h1>
           </div>
+        )}
+        
 
+        {sidebarVisible && (
           <div className="userinfo">
             <img className="acc-pic" src="icons/profilepics.jpeg" alt="accpic" />
             <p className="name">john doe</p>
             <p className="username">@ilovegenshin</p>
           </div>
+        )}
 
-          <div className={`appsections ${sidebarVisible ? '' : 'sidebar-minimized'}`}>
-            <Link
-              to="/account"
-              className={`accountcont ${selectedSection === 'account' ? 'active' : ''}`}
-              onClick={() => handleSectionClick('account')}
-            >
-              <img className="accpic" src="icons/profileacc.png" alt="account" />
-              {sidebarVisible && <p className="account">Account</p>}
-            </Link>
+        {!sidebarVisible ? (
+          <div className="flogo-wrapper">
+            <div>
+              <p className="flogo">f.</p>
+            </div>
+          </div>
+        ): null}
 
-            <Link
-              to="/recipe-stack"
-              className={`explorecont ${selectedSection === 'explore' ? 'active' : ''}`}
-              onClick={() => handleSectionClick('explore')}
-            >
-              <img className="search" src="icons/home.png" alt="explore" />
-              {sidebarVisible && <p className="explore">Explore</p>}
-            </Link>
+        <div className={`appsections ${sidebarVisible ? '' : 'sidebar-minimized additional-class'}`}>
+          <Link
+            to="/"
+            className={`accountcont ${selectedSection === 'account' ? 'active' : ''}`}
+            onClick={() => handleSectionClick('account')}
+          >
+            <img className="home" src="icons/home.png" alt="account" />
+            {sidebarVisible && <p className="hometext">Home</p>}
+          </Link>
+
+          <Link
+            to="/recipe-stack"
+            className={`explorecont ${selectedSection === 'explore' ? 'active' : ''}`}
+            onClick={() => handleSectionClick('explore')}
+          >
+            <img className="search" src="icons/magnifyingglass.png" alt="explore" />
+            {sidebarVisible && <p className="explore">Explore</p>}
+          </Link>
 
             <Link
               to="/favorites"
@@ -69,19 +83,18 @@ const Sidebar = () => {
               {sidebarVisible && <p className="chat">Chat</p>}
             </Link>
 
-            <Link
-              to="/settings"
-              className={`settingscont ${selectedSection === 'settings' ? 'active' : ''}`}
-              onClick={() => handleSectionClick('settings')}
-            >
-              <img className="settingpic" src="icons/setting.png" alt="settings" />
-              {sidebarVisible && <p className="settings">Settings</p>}
-            </Link>
-          </div>
-        </nav>
-      </div>
-
+          <Link
+            to="/settings"
+            className={`settingscont ${selectedSection === 'settings' ? 'active' : ''}`}
+            onClick={() => handleSectionClick('settings')}
+          >
+            <img className="settingpic" src="icons/setting.png" alt="settings" />
+            {sidebarVisible && <p className="settings">Settings</p>}
+          </Link>
+        </div>
+      </nav>
     </div>
+
   );
 };
 

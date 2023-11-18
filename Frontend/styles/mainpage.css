@@ -1,0 +1,26 @@
+@import url("https://db.onlinewebfonts.com/c/365834cfa7beb7ca64c00476397ddc32?family=Helvetica+Neue+Medium+Extended");
+@font-face {
+    font-family: "Helvetica Neue Medium Extended";
+    src: url("https://db.onlinewebfonts.com/t/365834cfa7beb7ca64c00476397ddc32.eot");
+    src: url("https://db.onlinewebfonts.com/t/365834cfa7beb7ca64c00476397ddc32.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/365834cfa7beb7ca64c00476397ddc32.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/365834cfa7beb7ca64c00476397ddc32.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/365834cfa7beb7ca64c00476397ddc32.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/365834cfa7beb7ca64c00476397ddc32.svg#Helvetica Neue Medium Extended")format("svg");
+}
+
+
+body{
+    background: radial-gradient(farthest-side at 100% -10%, #fbe49c, #fbe2eb);
+}
+
+.searchbar{
+    background: white;
+    color: orange;
+    width: 400px;
+    height: 50px;
+    border: none;
+    padding: 10px 10px 10px 40px;
+    border-radius: 30px;
+    font-family: "Helvetica Neue Medium Extended";
+}
