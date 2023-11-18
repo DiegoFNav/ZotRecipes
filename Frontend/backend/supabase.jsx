@@ -54,7 +54,6 @@ const getData = (url, apiKey=spoonacularApiKey) => {
 
 export const getRandomRecipe = () => {
   const randomRecipeURL = 'https://api.spoonacular.com/recipes/random'
-  console.log('getData', getData(randomRecipeURL))
   return getData(randomRecipeURL)
 }
 
@@ -68,7 +67,6 @@ export const saveRecipe = (data) => {
   let ingredientIds = [];
   data.extendedIngredients.map((ingredient) => {
     ingredientIds.push(ingredient.id)
-
     const saveIngredients = async () => {
       const { data, error } = await supabase
       .from('ingredients')
@@ -93,7 +91,7 @@ export const saveRecipe = (data) => {
     const { data, error } = await supabase
     .from('instructions')
     .insert({
-      recipe_id: id, instruction: listOfInstructions, step_number: step_number
+      id: id, instruction: listOfInstructions, step_number: step_number
     })
     .select()
 
@@ -126,12 +124,13 @@ export const saveRecipe = (data) => {
   }
   saveToRecipe()
   saveInstructions(id, instructions)
-  // saveIngredients when adding ingredients IDs to a list to insert into 'recipe' table
+
+
 }
 
 
 const ReturnRecipe = () => {
-  /*const [recipeData, setRecipeData] = useState('')
+  const [recipeData, setRecipeData] = useState('')
   console.log('does this work')
   //uncomment if you want to see data in console
   useEffect( () => {
@@ -149,7 +148,7 @@ const ReturnRecipe = () => {
     console.log("recipe data is : ", recipeData)
     saveRecipe(recipeData);
 
-  }, [recipeData])*/
+  }, [recipeData])
   return (
     <>
       <p>sup</p>
