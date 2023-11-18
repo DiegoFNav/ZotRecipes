@@ -1,19 +1,46 @@
-import dotenv from 'dotenv'
-dotenv.config()
 import { supabase } from './client.js'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
-const spoonacularApiKey = '9c4a7ac652404239b01cc2749aeafd5f'
+/*
+spoonacular API Keys:
 
-"<ol><li>1. Add mussels and sauce packets into boiling water. Let boil with mussels about 5 minutes to cook and deepen the broth. If using fresh mussels, wait until they open and discard closed mussels.</li><li>2. Include the noodles and cook for a 2, 3 minutes. Add the beaten egg while stirring noodles in a circular motion for even, flaky egg drops. If wanting a poached egg, carefully add the egg off to the side of the pot.</li><li>3. Meanwhile, cut scallion into thin pieces along with gim (seaweed) sheet.</li><li>4. Transfer to a serving bowl and add the scallions and gim (seaweed).</li></ol>"
+AVAIABLE AS OF 11/17:
+73ee43c01e3b43a08fd690feeaca2ff9
+d29bf06c4b974e4b83a389c598283e5e
 
+USED ALL CALLS AS OF 11/17:
+9c4a7ac652404239b01cc2749aeafd5f
+*/
 
-// Function to strip HTML tags using regex
+const spoonacularApiKey = '73ee43c01e3b43a08fd690feeaca2ff9'
+
+// Parser that strips newlines and html elements
 function stripHtmlTags(html) {
-  stringWithoutTags = html.replace(/<[^>]*>/g, '')
-  return stringWithoutTags.split(/\s+/);
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const elements = doc.body.childNodes;
+
+  const contentList = [];
+
+  elements.forEach((element) => {
+    if (element.textContent.trim() !== '') {
+      contentList.push(element.textContent.trim());
+    }
+  });
+  
+  return contentList[0].split(/[.\n]/).flatMap((item) =>
+  item.trim().length > 0 ? item.trim() : []
+);
 }
 
+// Parser that gets sentence before first period
+function getElementBeforeFirstPeriod(inputString) {
+  const index = inputString.indexOf('.');
+  if (index !== -1) {
+      return inputString.substring(0, index);
+  }
+  return inputString;
+}
 
 
 const getData = (url, apiKey=spoonacularApiKey) => {
@@ -41,43 +68,32 @@ const saveRecipe = (data) => {
   let ingredientIds = [];
   data.extendedIngredients.map((ingredient) => {
     ingredientIds.push(ingredient.id)
-    // TODO: Ingredient's table 
-    /* 
-    Add and run a function that puts each ingredient into ingredient's table
-    Name of Table: ingredients
-    Copy the following attributes
-    id
-    name
-    */
+
     const saveIngredients = async () => {
       const { data, error } = await supabase
       .from('ingredients')
-      .insert({
-        id: ingredient.id, name: ingredient.name})
+      .insert([
+        { id: ingredient.id, name: ingredient.name }
+      ])
       .select()
-      }
       if (error) {
-        console.log('error when saving ingredeints: ', error)
+        if (error.code !== "23505") {
+          console.log('ingreidents error at: ', error)
+        }
       } else {
         console.log('save ingredients: ', data)
+      }
       }
     saveIngredients()
   })
 
-  // TODO: Instructions table
-  /* 
-  Name of Table: instructions
-  Copy id --> recipe_id
-  Parse Instructions as a list of strings
-  Instructions has elements in it list <li>, <p>
-  */
-
   const saveInstructions = async (id, instructions) => {
     const listOfInstructions = stripHtmlTags(instructions)
+    const step_number = listOfInstructions.length
     const { data, error } = await supabase
     .from('instructions')
     .insert({
-      recipe_id: id, instruction: listOfInstructions
+      recipe_id: id, instruction: listOfInstructions, step_number: step_number
     })
     .select()
 
@@ -87,6 +103,7 @@ const saveRecipe = (data) => {
       console.log('successfully saved instructions: ', data)
     }
   }
+
 
 
   const saveToRecipe = async () => {
@@ -111,46 +128,34 @@ const saveRecipe = (data) => {
   saveInstructions(id, instructions)
   // saveIngredients when adding ingredients IDs to a list to insert into 'recipe' table
 }
-saveRecipe(getRandomRecipe())
 
 
-const ReturnRecipe = async () => {
-  const [recipeData, setRecipeData] = useState(null)
-
-
+const ReturnRecipe = () => {
+  /*const [recipeData, setRecipeData] = useState('')
+  console.log('does this work')
   //uncomment if you want to see data in console
   useEffect( () => {
+    console.log('does this work in use effect')
     const fetchData = async () => {
       const data = await getRandomRecipe();
       setRecipeData(data);
     };
-
+    
     if (!recipeData) {
       fetchData()
       return
     }
+    console.log('recipedata', recipeData)
     console.log("recipe data is : ", recipeData)
     saveRecipe(recipeData);
 
-  }, [recipeData])
+  }, [recipeData])*/
   return (
     <>
-    <p>sup</p>
+      <p>sup</p>
     </>
   )
 }
 
-
-
-
-
 export default ReturnRecipe
 
-
-/* recipes db attributes
-id, title, description, image_url, protein, calories, fat, sodium, gluten_free, dairy_free, cuisine, cooking_minutes, cheap, health_score, preparation_minutes, servings, vegan, vegetarian, ingredientIds, instructionIds
-
-
-
-
-*/

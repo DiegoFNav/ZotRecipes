@@ -1,0 +1,42 @@
+.cardContainer {
+    background-color: rgb(231, 153, 179);
+    display: grid;
+    height: 600px;
+    width: 450px;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 150px 1fr;
+    border-radius: 50px;
+}
+
+.swipe {
+    background-color: white;
+    transform: translate3d(0px, 0px, 0px) rotate(0deg);
+    grid-area:  1 / 1 / 2 / 2;
+    height: 600px;
+    width: 450px;
+    border-radius: 50px;
+}
+
+.card {
+    background-size: 100% 100%;
+    height: 600px;
+    width: 450px;
+    position: relative;
+    border-radius: 50px;
+}
+
+.card #name {
+    padding: 15px;
+    font-size: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    text-shadow: 2px 4px 10px rgba(36, 34, 35, 0.6);
+    font-family: "Helvetica Neue Medium Extended";
+    
+}
+
+.sideButton {
+    background-color: rgb(255, 127, 227);
+}
