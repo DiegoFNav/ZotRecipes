@@ -109,7 +109,6 @@ const RecipeObject = (props) => {
     })
 
   }, [initializeRecipeObject, instructionData, recipeData, ingredientData])
-  console.log('recipeObject', recipeObject)
 
   return (
     <>
