@@ -3,10 +3,9 @@ import Sidebar from './components/Sidebar'
 import { useRoutes } from 'react-router-dom'
 import Stack from './components/Stack.jsx'
 import MainPage from './components/MainPage.jsx'
-import RecipeObject from '../backend/getData.jsx'
 import ReturnRecipe from '../backend/supabase.jsx'
-import { getRandomRecipe} from '../backend/supabase.jsx'
-import { saveRecipe } from '../backend/supabase.jsx'
+import { RecipeObject } from '../backend/getData.jsx'
+
 
 
 function App() {

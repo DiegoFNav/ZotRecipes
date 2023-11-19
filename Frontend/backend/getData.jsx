@@ -21,7 +21,7 @@ instructionIds (array of instruction id strings)
 
 */
 
-const RecipeObject = (props) => {
+export const RecipeObject = (props) => {
   const [recipeData, setRecipeData] = useState(null)
   const [ingredientData, setIngredientData] = useState([])
   const [currentIngredient, setCurrentIngredient] = useState('')
@@ -110,11 +110,6 @@ const RecipeObject = (props) => {
 
   }, [initializeRecipeObject, instructionData, recipeData, ingredientData])
 
-  return (
-    <>
-      <p>hello</p>
-    </>
-  )
+  return recipeData
 }
 
-export default RecipeObject

@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react'
+import React, { useState, useMemo, useRef, useEffect } from 'react'
 import TinderCard from 'react-tinder-card'
-import { supabase } from '../../backend/client'
-import { getRandomRecipe, saveRecipe,  } from '../../backend/supabase'
+import { getRandomRecipe} from '../../backend/supabase'
 
 
 
@@ -32,23 +31,20 @@ const db = [
 function Stack () {
   const [currentIndex, setCurrentIndex] = useState(db.length - 1)
   const [lastDirection, setLastDirection] = useState()
+  const [data, setData] = useState('')
 
-  const [recipeData, setRecipeData] = useState('')
-  //uncomment if you want to see data in console
-  useEffect( () => {
-    const fetchData = async () => {
-      const data = await getRandomRecipe();
-      setRecipeData(data);
-    };
+  useEffect(() => {
+    setData(getRandomRecipe())
+  }, [])
+
+
+  data
+  .then(()=>{
+
+  })
+  .catch(()=>{
     
-    if (!recipeData) {
-      fetchData()
-      return
-    }
-    saveRecipe(recipeData);
-
-  }, [recipeData])
-
+  })
 
 
 
@@ -88,8 +84,8 @@ function Stack () {
     // during latest swipes. Only the last outOfFrame event should be considered valid
   }
 
-  const swipe = async (dir) => {
-    console.log(saveRecipe(getRandomRecipe()))
+  const swipe = async (dir, newRecipeData) => {
+    console.log('dat tiel', newRecipeData)
     if (canSwipe && currentIndex < db.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
     }
@@ -115,8 +111,6 @@ function Stack () {
       />
       <h1>Available Recipes</h1>
       <div className='cardContainer'>
-
-        {recipeData && map}
         {db.map((character, index) => (
           <TinderCard
             ref={childRefs[index]}
@@ -136,7 +130,7 @@ function Stack () {
         ))}
       </div>
       <div className='buttons'>
-        <button className='sideButton' style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}>Reject Recipe</button>
+        <button className='sideButton' style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={data ? () => swipe('left', data): () => swipe('left', {})}>Reject Recipe</button>
         <button style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>Undo Swipe</button>
         <button className='sideButton' style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>Accept Recipe</button>
       </div>

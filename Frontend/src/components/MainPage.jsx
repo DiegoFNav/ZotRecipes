@@ -60,7 +60,7 @@ const MainPage = () => {
         <h2>Recipes not loading</h2>
       )}
     <div>
-      <input class="searchbar" type="text" placeholder="What would you like to eat?"></input>
+      <input className="searchbar" type="text" placeholder="What would you like to eat?"></input>
     </div>
     <div className="scroll-button right" onClick={() => scroll('right')}>&gt;</div>
     </div>
